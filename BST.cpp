@@ -63,7 +63,7 @@ struct node *deleteNode(struct node *root, int key) {
       free(root);
       return temp;
     }
-
+// ^4 sariin 28 delete node
     struct node *temp = minValueNode(root->right);
 
     root->key = temp->key;
