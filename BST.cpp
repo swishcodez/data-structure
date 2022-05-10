@@ -15,6 +15,18 @@ struct node *newNode(int item)
     return temp;
 }
 
+int height(node* node){
+    if(node == NULL)
+        return 0;
+    return max(height(node->left), height(node->right)) + 1 ;
+}
+
+int weight(node* node){
+    if(node == NULL)
+        return 0;
+    return weight(node->left) + weight(node->right) + 1;
+}
+
 void inorder(struct node *root, int space = 0, int height = 10)
 {
     if (root != NULL)
@@ -101,20 +113,24 @@ struct node *deleteNode(struct node *root, int key)
 int main()
 {
     struct node *root = NULL;
+    root = insert(root, 2);
     root = insert(root, 8);
-    root = insert(root, 3);
-    root = insert(root, 1);
-    root = insert(root, 6);
-    root = insert(root, 7);
     root = insert(root, 10);
-    root = insert(root, 14);
-    root = insert(root, 4);
+    root = insert(root, 9);
+    root = insert(root, 15);
+    root = insert(root, 6);
+    root = insert(root, 18);
+    root = insert(root, 10);
+    root = insert(root, 11);
 
     cout << "Inorder traversal: ";
-    inorder(root);
-
+    inorder(root);   
+    cout << "height : " << height(root) << endl;
+    cout << "weight : " << weight(root) << endl;
     cout << "\nAfter deleting 10\n";
     root = deleteNode(root, 10);
     cout << "Inorder traversal: ";
     inorder(root);
+    cout << "height : " << height(root) << endl;
+    cout << "weight : " << weight(root) << endl;
 }
